@@ -1,0 +1,12 @@
+55,alia,alia@123,0.0
+34,adam,adam234@g,0.0
+M1,Alice,alice@example.com,0.0
+M2,Bob,bob@example.com,10.0
+M3,Charlie Brown,charlie@example.com,0.0
+M4,Diana Prince,diana@example.com,10.0
+M5,Ethan Hunt,ethan@example.com,2.0
+M6,Fiona Gallagher,fiona@example.com,0.0
+M7,George Martin,george@example.com,0.0
+M8,Hannah Lee,hannah@example.com,0.0
+M9,Ian Wright,ian@example.com,15.0
+M10,Julia Roberts,julia@example.com,0.0

@@ -1,0 +1,3 @@
+124,moon,yok,available
+12345,1984,George Orwell,available
+67890,The Hobbit,J.R.R. Tolkien,borrowed:M16789
