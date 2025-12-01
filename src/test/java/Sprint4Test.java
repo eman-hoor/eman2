@@ -56,7 +56,7 @@ class Sprint4Test {
             () -> bookService.borrowBook(member, "123456"));
     }
 
-    @Test
+/* @Test
     void testBorrowFailsWhenMemberHasOverdueBook() {
         // Borrow once
         bookService.borrowBook(member, "123456");
@@ -70,6 +70,19 @@ class Sprint4Test {
         assertThrows(IllegalStateException.class,
             () -> bookService.borrowBook(member, "67899"));
     } 
+    */
+    @Test
+    void testBorrowFailsWhenMemberHasOverdueBook() {
+        bookService.borrowBook(member, "123456");
+        book.setDueDate(LocalDate.now().minusDays(5)); // متأخر
+
+        Book another = new Book("Brave New World", "Aldous Huxley", "67899");
+        bookService.addBook(another);
+
+    
+        assertThrows(IllegalStateException.class,
+            () -> bookService.borrowBook(member, "67899"));
+    }
 
     @Test
     void testBorrowFailsWhenBookAlreadyBorrowed() {
