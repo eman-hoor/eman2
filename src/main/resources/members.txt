@@ -8,5 +8,4 @@ M5,Ethan Hunt,ethan@example.com,2.0
 M6,Fiona Gallagher,fiona@example.com,0.0
 M7,George Martin,george@example.com,0.0
 M8,Hannah Lee,hannah@example.com,0.0
-M9,Ian Wright,ian@example.com,15.0
-M10,Julia Roberts,julia@example.com,0.0
+M9,Ian Wright,ian@example.com,10.0

@@ -1,6 +1,7 @@
 243,the sun,laila,available
 44444,The Catcher in the Rye,J.D. Salinger,available
 432,plants,harper lee,available
+455,the real person,haily,borrowed:55
 33333,War and Peace,Leo Tolstoy,available
 55555,Brave New World,Aldous Huxley,available
 18,moon,hana,available

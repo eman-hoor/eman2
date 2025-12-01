@@ -43,7 +43,16 @@ public class BookService {
         if (b.isBorrowed()) throw new IllegalStateException("Book already borrowed.");
         if (member.getFineBalance() > 0) throw new IllegalStateException("Member has unpaid fines.");
         // Could also check overdue books here for Sprint 4
+        for (Book b2 : getAllBooks()) {
+            if (b2.isBorrowed() 
+                && b2.getBorrowedBy().equals(member.getMemberId()) 
+                && b2.getDueDate() != null 
+                && b2.getDueDate().isBefore(LocalDate.now())) {
+                throw new IllegalStateException("Member has overdue books.");
+            }
+        }
         b.borrow(member.getMemberId());
+        b.setDueDate(LocalDate.now().plusDays(28));
     }
  
     
@@ -60,7 +69,7 @@ public class BookService {
     
     //========================
     
- // ✅ File I/O
+ //  File I/O
     public void loadBooks(String filename) {
     	 try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
              String line;

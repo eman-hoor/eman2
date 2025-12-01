@@ -18,12 +18,12 @@ public interface FineStrategy {
     }
 }
 
- class JournalFineStrategy implements FineStrategy {
+ /*class JournalFineStrategy implements FineStrategy {
     @Override
     public int calculateFine(int overdueDays) {
         return overdueDays * 15; // 15 NIS per day
     }
-}
+}*/
 
  //3. Context Class (e.g., Loan or Borrowing)
   class Loan {

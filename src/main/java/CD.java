@@ -19,7 +19,7 @@ public class CD {
     public void borrow(String memberId) {
         this.borrowed = true; 
         this.borrowedBy = memberId;
-        this.dueDate = LocalDate.now().plusDays(7); // ✅ 7-day loan
+        this.dueDate = LocalDate.now().plusDays(7); //  7-day loan
     }
 
     public void returnCD() {
@@ -27,11 +27,48 @@ public class CD {
         this.borrowedBy = null;
         this.dueDate = null;
     }
-
+ // Getters
+    public String getId() { return id; }
+    public String getTitle() { return title; }
+    public String getArtist() { return artist; }
+   
     public boolean isBorrowed() { return borrowed; }
     public String getBorrowedBy() { return borrowedBy; }
     public LocalDate getDueDate() { return dueDate; }
 	
+ // For saving to file
+    @Override
+    public String toString() {
+        if (borrowed) {
+            return id + "," + title + "," + artist + ",borrowed:" + borrowedBy;
+        } else {
+            return id + "," + title + "," + artist + ",available";
+        }
+    }
+    
+ // For loading from file
+    public static CD fromString(String line) {
+        String[] parts = line.split(",");
+        if (parts.length < 4) throw new IllegalArgumentException("Invalid CD record: " + line);
+
+        CD cd = new CD(parts[0], parts[1], parts[2]);
+        if (parts[3].startsWith("borrowed:")) {
+            cd.borrowed = true;
+            cd.borrowedBy = parts[3].substring("borrowed:".length());
+            cd.dueDate = LocalDate.now().plusDays(7); // approximate reload
+        }
+        return cd;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    // Optionally, add a setter for borrowedBy if needed in tests:
+    public void setBorrowedBy(String memberId) {
+        this.borrowedBy = memberId;
+    }
+
 	
 	
 }

@@ -93,4 +93,13 @@ class AuthServiceTest {
         assertEquals("hoor", authService.getCurrentAdmin().getUsername());
     }
 
+    @Test
+    void testAdminLoginSuccess() {
+        AuthService authService = new AuthService();
+        authService.addAdmin("admin", "pass");
+
+        assertTrue(authService.login("admin", "pass"));
+        assertEquals("admin", authService.getCurrentAdmin().getUsername());
+    }
+
 }

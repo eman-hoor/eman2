@@ -6,9 +6,9 @@ public class AuthService {
     private Admin currentAdmin; // track which admin is logged in
 
     public AuthService() {
-        // Example: preload some admins
+        // Example:
         admins.put("hoor", new Admin("hoor", "hoor122"));
-        admins.put("admin", new Admin("admin", "admin123"));
+        admins.put("eman", new Admin("eman", "eman123"));
     }
 
     // Add a new admin account
