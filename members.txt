@@ -1,2 +1,0 @@
-M1,Alice,alice@example.com,0.0
-M2,Bob,bob@example.com,10.0

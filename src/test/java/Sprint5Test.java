@@ -161,9 +161,94 @@ public class Sprint5Test {
     }
 	
 	
+    @Test
+    void testFromStringAvailable() {
+        String line = "1,Thriller,Michael Jackson,available";
+        CD cd = CD.fromString(line);
+
+        assertEquals("1", cd.getId());
+        assertEquals("Thriller", cd.getTitle());
+        assertEquals("Michael Jackson", cd.getArtist());
+        assertFalse(cd.isBorrowed());
+        assertNull(cd.getBorrowedBy());
+        assertNull(cd.getDueDate());
+    }
+    
+    @Test
+    void testFromStringBorrowed() {
+        String line = "2,Back in Black,ACDC,borrowed:M1";
+        CD cd = CD.fromString(line);
+
+        assertEquals("2", cd.getId());
+        assertEquals("Back in Black", cd.getTitle());
+        assertEquals("ACDC", cd.getArtist());
+        assertTrue(cd.isBorrowed());
+        assertEquals("M1", cd.getBorrowedBy());
+        assertNotNull(cd.getDueDate()); // dueDate set when borrowed
+    }
+    
+    @Test
+    void testToStringAvailable() {
+        CD cd = new CD("3", "Rumours", "Fleetwood Mac");
+        String result = cd.toString();
+        assertEquals("3,Rumours,Fleetwood Mac,available", result);
+    }
+
+    @Test
+    void testToStringBorrowed() {
+        CD cd = new CD("4", "Abbey Road", "The Beatles");
+        cd.borrow("M2");
+        String result = cd.toString();
+        assertEquals("4,Abbey Road,The Beatles,borrowed:M2", result);
+    }
+
+    @Test
+    void testSetBorrowedBy() {
+        CD cd = new CD("5", "Hotel California", "Eagles");
+        cd.setBorrowedBy("M3");
+        assertEquals("M3", cd.getBorrowedBy());
+    }
+    @Test
+    void testGetArtist() {
+        CD cd = new CD("6", "Dark Side of the Moon", "Pink Floyd");
+        assertEquals("Pink Floyd", cd.getArtist());
+    }
 	
-	
-	
+	//********************************************fine strat
+    @Test
+    void testBookFineStrategy2() {
+        FineStrategy bookStrategy = new BookFineStrategy();
+        Loan loan = new Loan(bookStrategy, 3); // 3 days overdue
+        assertEquals(30, loan.calculateFine(),
+            "Book fine should be 3 * 10 = 30");
+    }
+
+    @Test
+    void testCDFineStrategy2() {
+        FineStrategy cdStrategy = new CDFineStrategy();
+        Loan loan = new Loan(cdStrategy, 2); // 2 days overdue
+        assertEquals(40, loan.calculateFine(),
+            "CD fine should be 2 * 20 = 40");
+    }
+
+    @Test
+    void testZeroOverdueDays() {
+        FineStrategy bookStrategy = new BookFineStrategy();
+        Loan loan = new Loan(bookStrategy, 0); // no overdue
+        assertEquals(0, loan.calculateFine(),
+            "Fine should be 0 when overdueDays = 0");
+    }
+
+    @Test
+    void testDifferentStrategiesGiveDifferentResults() {
+        Loan bookLoan = new Loan(new BookFineStrategy(), 5); // 5 days overdue
+        Loan cdLoan = new Loan(new CDFineStrategy(), 5);
+
+        assertEquals(50, bookLoan.calculateFine(),
+            "Book fine should be 5 * 10 = 50");
+        assertEquals(100, cdLoan.calculateFine(),
+            "CD fine should be 5 * 20 = 100");
+    }
 	
 	
 	

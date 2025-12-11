@@ -18,7 +18,7 @@ class testSendEmailFailsWithInvalidCredentials {
 
 	@BeforeEach
 	void setUp() throws Exception {
-	}
+	} 
 
 	@AfterEach
 	void tearDown() throws Exception {

@@ -43,7 +43,19 @@ class BookTest {
         assertTrue(result.contains("J.R.R. Tolkien"));
         assertTrue(result.contains("67890"));
     }
-	
+	@Test
+    void testGetFinePerDay() {
+        Book book = new Book("1984", "George Orwell", "12345");
+        assertEquals(10, book.getFinePerDay(),
+            "Fine per day should be 10");
+    }
+
+    @Test
+    void testGetLoanPeriodDays() {
+        Book book = new Book("1984", "George Orwell", "12345");
+        assertEquals(28, book.getLoanPeriodDays(),
+            "Loan period should be 28 days");
+    }
 
 	
 }

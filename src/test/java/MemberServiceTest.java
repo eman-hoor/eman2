@@ -115,6 +115,64 @@ class MemberServiceTest {
         assertEquals(0, loadedM2.getFineBalance());
     }
 	
+	@Test
+    void testPayFineReducesBalance() {
+        MemberService service = new MemberService();
+        Member m = new Member("M1", "Alice", "alice@example.com");
+        m.setfineBalance(50.0);
+        service.addMember(m);
+
+        service.payFine("M1", 20.0);
+
+        assertEquals(30.0, service.findById("M1").getFineBalance(),
+            "Fine balance should be reduced by 20");
+    }
+
+    @Test
+    void testPayFineDoesNotGoNegative() {
+        MemberService service = new MemberService();
+        Member m = new Member("M2", "Bob", "bob@example.com");
+        m.setfineBalance(10.0);
+        service.addMember(m);
+
+        service.payFine("M2", 50.0); // pay more than balance
+
+        assertEquals(0.0, service.findById("M2").getFineBalance(),
+            "Fine balance should not go below 0");
+    }
+
+    @Test
+    void testPayFineNonexistentMemberDoesNothing() {
+        MemberService service = new MemberService();
+        service.payFine("M3", 10.0); // no member added
+
+        assertNull(service.findById("M3"),
+            "Nonexistent member should remain null");
+    }
+    
+    @Test
+    void testLoadMembersHandlesMissingFile() {
+        MemberService service = new MemberService();
+
+        service.loadMembers("nonexistent_file.csv");
+
+        assertTrue(service.getAllMembers().isEmpty(),
+            "Service should start fresh when file is missing");
+    }
+    
+    @Test
+    void testSaveMembersHandlesIOException() {
+        MemberService service = new MemberService();
+        Member m = new Member("M4", "Charlie", "charlie@example.com");
+        service.addMember(m);
+
+        // Try to save to a directory instead of a file
+        service.saveMembers("/");  // On most systems this will fail
+
+        // No exception should escape, members should still be in memory
+        assertFalse(service.getAllMembers().isEmpty(),
+            "Members should remain in memory even if saving fails");
+    }
 	
 	
 }

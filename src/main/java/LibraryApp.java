@@ -2,18 +2,52 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
+
+import io.github.cdimascio.dotenv.Dotenv;
 //import io.github.cdimascio.dotenv.Dotenv;
-/*
+/**
+ * Main entry point for the Library Management System application.
+ * <p>
+ * Provides a console-based menu for administrators and members to
+ * perform operations such as:
+ * <ul>
+ *   <li>Admin login/logout</li>
+ *   <li>Book operations (add, search, borrow, return)</li>
+ *   <li>CD operations (add, search, borrow, return)</li>
+ *   <li>Member operations (add, pay fines, unregister)</li>
+ *   <li>Notifications (send reminders)</li>
+ *   <li>Reports (view overdue items)</li>
+ *   <li>System exit with data persistence</li>
+ * </ul>
+ * </p>
+ *
+ * <p>Data is persisted in text files located under
+ * {@code src/main/resources} for members, books, and CDs.</p>
+ *
+ * @author hoor
+ * @version 1.0
+ */
 public class LibraryApp {
-
+	/**
+     * Launches the Library Management System.
+     * <p>
+     * Initializes services, loads data from files, and presents
+     * a menu-driven interface for user interaction.
+     * </p>
+     *
+     * @param args command-line arguments (not used)
+     */
 	public static void main(String[] args) {
-		//Dotenv dotenv = Dotenv.load();
-       // String emailUser = dotenv.get("EMAIL_USER");
-        //String emailPass = dotenv.get("EMAIL_PASS");
-
+		Dotenv dotenv = Dotenv.load();
+        String emailUser = dotenv.get("EMAIL_USER"); 
+        String emailPass = dotenv.get("EMAIL_PASS");
+ 
         // Initialize services
-        //EmailService emailService = new EmailService(emailUser, emailPass);
-       // ReminderService reminderService = new ReminderService(emailService);
+        EmailService emailService = new EmailService(emailUser, emailPass);
+        ReminderService reminderService = new ReminderService();
+        //emailService.sendEmail("s12219440@stu.najah.edu", "test emailservice for lib", "library managment system new service ");
+        //........
+        reminderService.addObserver(new EmailNotifier(emailService));
 		MemberService memberService = new MemberService();
         BookService bookService = new BookService();
         AuthService authService = new AuthService(); // multiple admins supported
@@ -36,9 +70,9 @@ public class LibraryApp {
         	System.out.println("\n=== Library Management System ===");
 
         	System.out.println("---- Admin Operations ----");
-        	System.out.println("1.  Admin Login");
+        	System.out.println("1.  Admin Login"); 
         	System.out.println("2.  Admin Logout");
-
+ 
         	System.out.println("\n---- Book Operations ----");
         	System.out.println("3.  Add Book");
         	System.out.println("4.  Search Book");
@@ -341,4 +375,4 @@ public class LibraryApp {
     }
 		
 }
-	*/
+	

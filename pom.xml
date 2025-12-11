@@ -7,11 +7,6 @@
 
 <dependencies>
 <!-- https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api -->
-<dependency>
-    <groupId>jakarta.mail</groupId>
-    <artifactId>jakarta.mail-api</artifactId>
-    <version>2.2.0-M1</version>
-</dependency>
 
 
 <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
@@ -30,13 +25,25 @@
 </dependency>
 
 
+	<dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>jakarta.mail</artifactId>
+    <version>2.0.1</version>
+</dependency>
 
+<dependency>
+    <groupId>com.sun.activation</groupId>
+    <artifactId>jakarta.activation</artifactId>
+    <version>2.0.1</version>
+</dependency>
 
 	<dependency>
-		<groupId>First</groupId>
-		<artifactId>MyProject</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.0</version>
+      <scope>test</scope>
+    </dependency>	
+	
 </dependencies>
 
 

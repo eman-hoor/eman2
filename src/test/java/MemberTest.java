@@ -60,4 +60,13 @@ class MemberTest {
         assertEquals(0.0, member.getFineBalance());
     }
 
+    @Test
+    void testToString() {
+        Member m = new Member("M1", "Alice", "alice@example.com");
+        m.setfineBalance(25.0);
+
+        String expected = "M1 - Alice (alice@example.com), Fine: 25.0";
+        assertEquals(expected, m.toString(),
+            "toString should return member details in the correct format");
+    }
 }

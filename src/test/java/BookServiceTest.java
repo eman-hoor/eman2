@@ -218,7 +218,33 @@ class BookServiceTest {
         assertEquals("M1", loadedB1.getBorrowedBy());
     }
     
+    @Test
+    void testLoadBooksHandlesMissingFile() {
+        BookService service = new BookService();
+
+        // Use a filename that doesn't exist
+        service.loadBooks("nonexistent_file.csv");
+
+        // Assert that no books were loaded
+        assertTrue(service.getAllBooks().isEmpty(),
+            "BookService should start fresh when file is missing");
+    }
     
+    @Test
+    void testSaveBooksHandlesIOException() {
+        BookService service = new BookService();
+
+        // Add a book so saveBooks tries to write something
+        Book b = new Book("1984", "George Orwell", "12345");
+        service.addBook(b);
+
+        // Try to save to a directory instead of a file
+        service.saveBooks("/");  // On most systems this will fail
+
+        // No exception should escape, even though writing failed
+        assertFalse(service.getAllBooks().isEmpty(),
+            "Books should remain in memory even if saving fails");
+    }
     
     
     
