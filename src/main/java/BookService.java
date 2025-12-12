@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
+
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -98,7 +101,7 @@ public class BookService {
      * @throws IllegalStateException    if the book is not currently borrowed
      */
  
-    
+    private static final Logger LOGGER = Logger.getLogger(BookService.class.getName());
     public void returnBook(Member member, String isbn) {
     	Book b = books.get(isbn);
         if (b == null) throw new IllegalArgumentException("Book not found.");
@@ -158,11 +161,13 @@ public class BookService {
                 String status = b.isBorrowed() ? "borrowed:" + b.getBorrowedBy() : "available";
                 pw.println(b.getIsbn() + "," + b.getTitle() + "," + b.getAuthor() + "," + status);
             }
-        } catch (IOException e) {
-            System.out.println("Failed to save books: " + e.getMessage());
+        
+    }
+    	
+    	catch (IOException e) {
+            LOGGER.severe("Failed to save books to " + filename + ": " + e.getMessage());
+            throw new RuntimeException("Failed to save books", e);
         }
+    
     }
     }
-    
-    
-

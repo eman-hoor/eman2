@@ -76,12 +76,12 @@ public class EmailService {
             // Send
             Transport.send(message); 
 
-            System.out.println("Email sent successfully to " + to);
+            LOGGER.info("Email sent successfully to " + to);
 
         } catch (MessagingException e) {
             LOGGER.severe("Failed to send email to " + to + ": " + e.getMessage());
             throw new RuntimeException("Failed to send email", e);
-        }
+        } 
     }
 }
  
