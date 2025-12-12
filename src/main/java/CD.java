@@ -139,7 +139,7 @@ public class CD {
  
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
-    }
+    } 
     /**
      * Sets the ID of the member who borrowed the CD.
      * Useful for testing or manual overrides.
