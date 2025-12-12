@@ -3,7 +3,9 @@
   <groupId>Library2025</groupId>
   <artifactId>Library2025Proj</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-
+<properties>
+  <sonar.organization>orghoor</sonar.organization>
+</properties>
 
 <dependencies>
 <!-- https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api -->

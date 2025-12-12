@@ -21,7 +21,6 @@ public class BookService {
 	/**
      * Map of books keyed by their ISBN (lowercased).
      */
-	//private List<Book> books = new ArrayList<>();
     private Map<String, Book> books = new HashMap<>();
     /**
      * Adds a new book to the collection.
@@ -161,7 +160,7 @@ public class BookService {
                 pw.println(b.getIsbn() + "," + b.getTitle() + "," + b.getAuthor() + "," + status);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Failed to save books: " + e.getMessage());
         }
     }
     }

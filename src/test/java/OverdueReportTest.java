@@ -15,14 +15,7 @@ class OverdueReportTest {
     private CDService cdService;
     private MemberService memberService;
     
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-		
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
+	
 
 	@BeforeEach
 	void setUp() throws Exception {

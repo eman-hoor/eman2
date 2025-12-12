@@ -1,5 +1,5 @@
 
-
+import java.util.logging.Logger;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
@@ -19,7 +19,7 @@ import java.util.Properties;
  * @version 1.0
  */
 public class EmailService {
-
+    private static final Logger LOGGER = Logger.getLogger(EmailService.class.getName());
     /** The username (email address) used for authentication. */
     private final String username;
     /** The password or app-specific password used for authentication. */
@@ -32,8 +32,8 @@ public class EmailService {
      */
 
     public EmailService( String username, String password) {
-       
-        this.username = username;
+         
+        this.username = username; 
         this.password = password; 
     }
     /**
@@ -79,10 +79,10 @@ public class EmailService {
             System.out.println("Email sent successfully to " + to);
 
         } catch (MessagingException e) {
-            e.printStackTrace();
+            LOGGER.severe("Failed to send email to " + to + ": " + e.getMessage());
             throw new RuntimeException("Failed to send email", e);
         }
     }
 }
-
+ 
 

@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
+import java.util.logging.Logger;
 /**
  * Service class that manages library members.
  * Provides functionality to add, find, unregister, pay fines,
@@ -14,7 +15,7 @@ import java.util.*;
  * @version 1.0
  */
 public class MemberService {
-
+    private static final Logger LOGGER = Logger.getLogger(MemberService.class.getName());
     /** Map of members keyed by their unique ID. */
 	private Map<String, Member> members = new HashMap<>();
 	/**
@@ -115,11 +116,11 @@ public class MemberService {
                     members.put(m.getMemberId(), m);
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException e) { 
             System.out.println("No members file found, starting fresh.");
         }
     }
-//write
+//write 
     /**
      * Saves all members to a file.
      * Each line is written in the format:
@@ -134,8 +135,7 @@ public class MemberService {
                            m.getContact() + "," + m.getFineBalance());
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        }
+            LOGGER.severe("Error saving members to file: " + e.getMessage());        }
     }
 
     
