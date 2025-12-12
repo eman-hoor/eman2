@@ -3,11 +3,9 @@
   <groupId>Library2025</groupId>
   <artifactId>Library2025Proj</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-<properties> 
-<sonar.organization>your-org-name</sonar.organization> 
-<sonar.projectKey>your-org-name_repo-name</sonar.projectKey> 
-<sonar.host.url>https://sonarcloud.io</sonar.host.url> 
-</properties> 
+<properties>
+  <sonar.organization>orghoor</sonar.organization>
+</properties>
 
 <dependencies>
 <!-- https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api -->
