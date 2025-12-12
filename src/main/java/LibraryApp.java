@@ -27,7 +27,8 @@ import io.github.cdimascio.dotenv.Dotenv;
  * @author hoor
  * @version 1.0
  */
-public class LibraryApp {
+
+     /*public class LibraryApp { 
 	/**
      * Launches the Library Management System.
      * <p>
@@ -36,8 +37,8 @@ public class LibraryApp {
      * </p>
      *
      * @param args command-line arguments (not used)
-     */
-	public static void main(String[] args) {
+        */
+	/*public static void main(String[] args) {
 		Dotenv dotenv = Dotenv.load();
         String emailUser = dotenv.get("EMAIL_USER"); 
         String emailPass = dotenv.get("EMAIL_PASS");
@@ -375,4 +376,5 @@ public class LibraryApp {
     }
 		
 }
+*/
 	
