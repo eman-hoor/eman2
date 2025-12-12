@@ -129,7 +129,7 @@ public class CD {
             cd.borrowedBy = parts[3].substring("borrowed:".length());
             cd.dueDate = LocalDate.now().plusDays(7); // approximate reload
         }
-        return cd;  //testttttttttt thiiis 
+        return cd;  //testttttttttt thiiis  
     }
     /**
      * Sets a custom due date for the CD.
