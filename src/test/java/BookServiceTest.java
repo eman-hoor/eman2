@@ -225,19 +225,16 @@ class BookServiceTest {
     @Test
     void testSaveBooksHandlesIOException() {
         BookService service = new BookService();
-
-        // Add a book so saveBooks tries to write something
         Book b = new Book("1984", "George Orwell", "12345");
         service.addBook(b);
 
-        // Try to save to a directory instead of a file
-        service.saveBooks("/");  // On most systems this will fail
+        assertThrows(RuntimeException.class, () -> service.saveBooks("/"),
+            "Saving to an invalid path should throw RuntimeException");
 
-        // No exception should escape, even though writing failed
+        // Books remain in memory even if saving fails
         assertFalse(service.getAllBooks().isEmpty(),
             "Books should remain in memory even if saving fails");
     }
     
     
-    
-}
+} 
